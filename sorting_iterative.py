@@ -41,18 +41,19 @@ def selection_sort(items):
     # TODO: Repeat until all items are in sorted order
     # TODO: Find minimum item in unsorted items
     # TODO: Swap it with first unsorted item
-    # if is_sorted:
-        # return items
+    indexing_length = range(0, (len(items) - 1))
 
-    # minimum item = 0
-    # go through items:
-        # if item < minimum item:
-            # minimum item = item
+    for i in indexing_length:
+        min_item = i
 
-    # while minimum item < item before:
-        # items swap
+        for j in range(i + 1, len(items)):
+            if items[j] < items[i] and items[j] < items[min_item]:
+                min_item = j
 
-    
+        if min_item != i:
+            items[min_item], items[i] = items[i], items[min_item]
+
+    return items
 
 
 def insertion_sort(items):
