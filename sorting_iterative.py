@@ -1,7 +1,7 @@
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    TODO: Running time: O(n) because it only checks all the items once
+    TODO: Memory usage: O(1) because we are only creating 1 new set variable"""
     # TODO: Check that all adjacent items are in order, return early if so
     count = 0
     for _ in items:
