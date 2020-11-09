@@ -49,8 +49,26 @@ def partition(items, low, high):
     # TODO: Move items greater than pivot into back of range [p+1...high]
     # TODO: Move pivot item into final position [p] and return index p
 
+    # if len(items) <= 1:
+    #     return items
+    # else:
+    #     pivot = items.pop()
 
-def quick_sort(items, low=None, high=None):
+    # low = []
+    # high = []
+
+    # for item in items:
+    #     if item > pivot:
+    #         high.append(item)
+    #     else:
+    #         low.append(item)
+
+    # return partition(low) + [pivot] + partition(high)
+        
+
+
+
+def quick_sort(items):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
     TODO: Best case running time: ??? Why and under what conditions?
@@ -60,3 +78,19 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+
+    if len(items) <= 1:
+        return items
+    else:
+        pivot = items.pop()
+
+    low = []
+    high = []
+
+    for item in items:
+        if item > pivot:
+            high.append(item)
+        else:
+            low.append(item)
+
+    return quick_sort(low) + [pivot] + quick_sort(high)
