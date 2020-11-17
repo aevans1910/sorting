@@ -1,12 +1,16 @@
+from sorting_recursive import partition, merge_sort, quick_sort
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.next = None
+
+
 def counting_sort(numbers):
     """Sort given numbers (integers) by counting occurrences of each number,
     then looping over counts and copying that many numbers into output list.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Find range of given numbers (minimum and maximum integer values)
-    # TODO: Create list of counts with a slot for each number in input range
-    # TODO: Loop over given numbers and increment each number's count
-    # TODO: Loop over counts and append that many numbers into output list
     # FIXME: Improve this to mutate input instead of creating new output list
     count_arr = []
     sorted_arr = []
@@ -24,15 +28,54 @@ def counting_sort(numbers):
             count_arr[i] -= 1
 
 
-
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
     then sorting each bucket and concatenating all buckets in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Find range of given numbers (minimum and maximum values)
-    # TODO: Create list of buckets to store numbers in subranges of input range
-    # TODO: Loop over given numbers and place each item in appropriate bucket
-    # TODO: Sort each bucket using any sorting algorithm (recursive or another)
-    # TODO: Loop over buckets and append each bucket's numbers into output list
-    # FIXME: Improve this to mutate input instead of creating new output list
+    maxValue = 100
+    # Find range of given numbers (minimum and maximum values)
+    min_num = numbers[0]
+    max_num = numbers[0]
+    for num in numbers:
+        if num < min_num:
+            min_num = num
+        elif num > max_num:
+            max_num = num
+
+    # Create list of buckets to store numbers in subranges of input range
+    bucket = []
+    for _ in range(0, num_buckets):
+        node = Node(0)
+        bucket.append(node)
+
+    # Loop over given numbers and place each item in appropriate bucket
+    for i in range(0, num_buckets):
+        val = numbers[i]
+        index = (val*num_buckets)/maxValue
+        add_to_bucket(bucket, val, index)
+
+    # Loop over buckets and append each bucket's numbers into output list
+    result = []
+    for i in range(0, num_buckets):
+        current = bucket[i]
+        current = current.next
+        while not current == None:
+            result.append(current.key)
+            current = current.next
+
+def add_to_bucket(bucket, val, index):
+    node = Node(val)
+    current = bucket[index]
+    while not current.next == None:
+        if val < current.next.key:
+            insert_node(current, node, current.next)
+            return
+        else:
+            current = current.next
+    current.next = node
+
+def insert_node(previous, current, next_node):
+    previous.next = current
+    current.next = next_node
+
