@@ -9,9 +9,9 @@ class Node:
 def counting_sort(numbers):
     """Sort given numbers (integers) by counting occurrences of each number,
     then looping over counts and copying that many numbers into output list.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # FIXME: Improve this to mutate input instead of creating new output list
+    Running time: O(n+m) because we need to go through the original array, and 
+    the count array
+    Memory usage: O(n+m) because we are creating a count array and a sorted array"""
     count_arr = []
     sorted_arr = []
     min_num = numbers[0]
@@ -31,8 +31,10 @@ def counting_sort(numbers):
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
     then sorting each bucket and concatenating all buckets in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    Running time: O(n+m) because we are going through the orriginal array, and then
+    the bucket array
+    Memory usage: O(nm) because we are creating a hash bucket, so an array with arrays 
+    inside it"""
     maxValue = 100
     # Find range of given numbers (minimum and maximum values)
     min_num = numbers[0]
