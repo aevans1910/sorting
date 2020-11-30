@@ -1,5 +1,3 @@
-from sorting_recursive import partition, merge_sort, quick_sort
-
 class Node:
     def __init__(self, key):
         self.key = key
@@ -31,7 +29,7 @@ def counting_sort(numbers):
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
     then sorting each bucket and concatenating all buckets in sorted order.
-    Running time: O(n+m) because we are going through the orriginal array, and then
+    Running time: O(n+m) because we are going through the original array, and then
     the bucket array
     Memory usage: O(nm) because we are creating a hash bucket, so an array with arrays 
     inside it"""
